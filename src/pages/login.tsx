@@ -1,10 +1,14 @@
 import { useLogin } from "@refinedev/core";
 import { useEffect, useRef } from "react";
 
+import { yariga } from "assets";
+
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { ThemedTitleV2 } from "@refinedev/mui";
+
+// logo...
 
 import { CredentialResponse } from "../interfaces/google";
 
@@ -26,7 +30,7 @@ export const Login: React.FC = () => {
       try {
         window.google.accounts.id.initialize({
           ux_mode: "popup",
-          client_id: GOOGLE_CLIENT_ID,
+          client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
               login(res);
@@ -47,40 +51,34 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <Container
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <Box
+    component="div"
+    sx={{ backgroundColor: '#fcfcfc' }}
     >
-      <Box
-        display="flex"
-        gap="36px"
-        justifyContent="center"
-        flexDirection="column"
+      <Container
+        component='main'
+        maxWidth='xs'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '100vh',
+        }}
       >
-        <ThemedTitleV2
-          collapsed={false}
-          wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
-        />
-
-        <GoogleButton />
-
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
-          Powered by
-          <img
-            style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
-          />
-          Google
-        </Typography>
-      </Box>
-    </Container>
+        >
+          <div>
+            <img src={yariga} alt="Refine Logo" />
+          </div>
+          <Box mt={4}> <GoogleButton /> </Box> 
+        </Box>
+      </Container>
+    </Box>
   );
 };
