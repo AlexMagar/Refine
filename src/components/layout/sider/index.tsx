@@ -128,7 +128,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
                                         sx={{
                                             justifyContent: "center",
                                             minWidth: 36,
-                                            color: "primary.contrastText",
+                                            color: isSelected ? '#fff' : '#808191',
                                         }}
                                     >
                                         {icon ?? <ListOutlined />}
@@ -141,6 +141,8 @@ export const Sider: typeof DefaultSider = ({ render }) => {
                                             fontWeight: isSelected
                                                 ? "bold"
                                                 : "normal",
+                                            color: isSelected ? '#fff' : '#808191',
+                                            marginLeft: '10px'
                                         }}
                                     />
                                     {!collapsed &&
