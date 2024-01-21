@@ -41,6 +41,15 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
 import { Header } from "./components/layout/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
+
+import {
+  AccountCircleOutLined,
+  ChatBubbleOutline,
+  PeopleAltOutLined,
+  starOutlineRounded,
+  villaOutlined,
+} from "/@pankod/refine-mui";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((config) => {
@@ -144,14 +153,25 @@ function App() {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
+                    name: "property",
+                    list: MuiInferencer,
+                  },
+                  {
+                    name: "agent",
+                    list: MuiInferencer,
+                  },
+                  {
+                    name: "review",
+                    list: MuiInferencer,
+                  },
+                  {
+                    name: "message",
+                    list: MuiInferencer,
+                  },
+                  {
+                    name: "my-profile",
+                    options: { label: 'My Profile'},
+                    list: MuiInferencer,
                   },
                   {
                     name: "categories",
